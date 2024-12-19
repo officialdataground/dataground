@@ -39,16 +39,34 @@ const LogIn = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
       setLoading(true);
-      setTimeout(() => {
-        setLoading(true);
-        router.push("/homepage");
-      }, 1000);
+      try {
+        const response = await fetch("/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+  
+        if (response.ok) {
+          const data = await response.json();
+          alert(data.message);
+          router.push("/homepage");
+        } else {
+          const error = await response.json();
+          alert(error.message);
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Something went wrong. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
     }
   };
+  
 
   return (
     <div className="relative min-h-screen">

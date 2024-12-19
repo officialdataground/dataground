@@ -6,20 +6,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { username, password } = req.body;
 
     try {
-      // Query the database to validate the user
-      const [rows] = await pool.query(
-        "SELECT * FROM Users_login WHERE login = ? AND password = ?",
+      // Query the database for the user
+      const [rows]: any = await pool.query(
+        "SELECT * FROM logindata.users WHERE username = ? AND password = ?",
         [username, password]
       );
 
-      // Assert that `rows` is an array of objects
-      if (Array.isArray(rows) && rows.length > 0) {
+      // Check if a matching user exists
+      if (rows.length > 0) {
         return res.status(200).json({ message: "Login successful!" });
       } else {
         return res.status(401).json({ message: "Invalid username or password." });
       }
     } catch (error) {
-      console.error(error);
+      console.error("Database error:", error);
       return res.status(500).json({ message: "Internal server error." });
     }
   } else {

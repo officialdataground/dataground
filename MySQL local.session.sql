@@ -6,10 +6,36 @@ CREATE TABLE Users_login (
 );
 INSERT INTO Users_login (login, password) 
 VALUES 
-('pardeep', '123456789');
+('ashok', '11110000');
 DESCRIBE Users_login;
 git
 DELETE FROM Users_login WHERE login = '123';
 show database;
+SELECT * FROM Users_login;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

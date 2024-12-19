@@ -15,11 +15,7 @@ export default async function handler(
 
     try {
       // Query the database for the user
-<<<<<<< HEAD
-      const [rows]: any = await pool.query(
-=======
       const [rows]: [User[], FieldPacket[]] = await pool.query<User[]>(
->>>>>>> d07351a0bc0133161fbce4fc5c2d4f8dd1ea4236
         "SELECT * FROM logindata.users WHERE username = ? AND password = ?",
         [username, password]
       );

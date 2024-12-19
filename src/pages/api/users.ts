@@ -26,14 +26,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.setHeader('Allow', ['GET', 'POST']);
       res.status(405).json({ message: `Method ${req.method} Not Allowed` });
     }
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error:', error);
 
-    // Handle database errors
-    if (error.code === 'ER_NO_SUCH_TABLE') {
-      return res.status(500).json({ message: 'Database table does not exist' });
+    // Handle the error based on its type
+    if (isDatabaseError(error)) {
+      if (error.code === 'ER_NO_SUCH_TABLE') {
+        return res.status(500).json({ message: 'Database table does not exist' });
+      }
     }
 
-    res.status(500).json({ message: 'Internal server error', error: error.message });
+    if (error instanceof Error) {
+      res.status(500).json({ message: 'Internal server error', error: error.message });
+    } else {
+      res.status(500).json({ message: 'Unknown error occurred' });
+    }
   }
+}
+
+// Helper function to check if the error is a database error
+function isDatabaseError(error: unknown): error is { code: string } {
+  return typeof error === 'object' && error !== null && 'code' in error && typeof (error as { code: string }).code === 'string';
 }

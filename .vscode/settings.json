@@ -2,16 +2,16 @@
     "sqltools.connections": [
         {
             "mysqlOptions": {
-                "authProtocol": "xprotocol",
+                "authProtocol": "default",
                 "enableSsl": "Disabled"
             },
             "previewLimit": 50,
             "server": "localhost",
-            "port": 33060,
+            "port": 3306,
             "driver": "MySQL",
-            "name": "MySQL local",
-            "database": "logindata",
             "username": "root",
+            "database": "logindata",
+            "name": "MySQL local",
             "password": "Data@#1234",
             "connectionTimeout": 30
         }

@@ -9,6 +9,9 @@ VALUES
 ('pardeep', '123456789');
 DESCRIBE Users_login;
 git
+
+
+
 DELETE FROM Users_login WHERE login = '123';
 show database;
 

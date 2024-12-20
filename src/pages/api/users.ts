@@ -7,7 +7,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Fetch all users from the database
       const [rows] = await db.query('SELECT * FROM users');
       
-      // Ensure rows is an array
       res.status(200).json(Array.isArray(rows) ? rows : []);
     } else if (req.method === 'POST') {
       const { username, password } = req.body;
@@ -17,12 +16,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ message: 'Username and password are required' });
       }
 
-      // Insert a new user into the database
       await db.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, password]);
 
       res.status(201).json({ message: 'User created successfully' });
     } else {
-      // Handle unsupported methods
       res.setHeader('Allow', ['GET', 'POST']);
       res.status(405).json({ message: `Method ${req.method} Not Allowed` });
     }

@@ -7,13 +7,13 @@
             },
             "previewLimit": 50,
             "server": "localhost",
-            "port": 3306,
+            "port": 33068,
             "driver": "MySQL",
-            "username": "root",
+            "name": "MySQL",
             "database": "logindata",
-            "name": "MySQL local",
+            "username": "root",
             "password": "Data@#1234",
-            "connectionTimeout": 30
+            "connectionTimeout": 29
         }
     ]
 }

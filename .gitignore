@@ -40,3 +40,4 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+.env.local # Remove or comment out this line if you want to add .env.local

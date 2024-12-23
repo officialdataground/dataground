@@ -9,9 +9,9 @@
             "server": "localhost",
             "port": 3306,
             "driver": "MySQL",
-            "username": "root",
+            "name": "MySQ local",
             "database": "logindata",
-            "name": "MySQL local",
+            "username": "root",
             "password": "Data@#1234",
             "connectionTimeout": 30
         }

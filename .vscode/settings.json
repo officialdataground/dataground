@@ -7,13 +7,13 @@
             },
             "previewLimit": 50,
             "server": "localhost",
-            "port": 33068,
+            "port": 3306,
             "driver": "MySQL",
-            "name": "MySQL",
+            "name": "MySQ local",
             "database": "logindata",
             "username": "root",
             "password": "Data@#1234",
-            "connectionTimeout": 29
+            "connectionTimeout": 30
         }
     ]
 }
